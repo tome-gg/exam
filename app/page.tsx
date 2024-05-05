@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="wrapper">
       <div className="bg-white p-3 shadow-md w-full md:w-[90%] lg:w-[70%] max-w-4xl rounded-md">
-        <h1 className="heading">Welcome to Quizy</h1>
+        <h1 className="heading">TheGamingClassroom</h1>
         <Separator />
         <div className="grid grid-cols-1 md:grid-cols-2 p-5 md:p-10 gap-4">
           <div className="relative h-full">
@@ -14,8 +14,8 @@ export default function Home() {
               src={"/logo.png"}
               alt="banner-image"
               priority
-              width={500}
-              height={500}
+              width={300}
+              height={300}
               className="object-cover object-center"
             />
           </div>
