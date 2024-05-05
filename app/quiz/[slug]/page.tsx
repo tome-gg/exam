@@ -1,11 +1,14 @@
+
 import Questions from "@/components/questions";
 import { categoryOptions, domainOptions } from "@/constants";
 import { redirect } from "next/navigation";
 
 type Props = {
+  params: {
+    slug: string;
+  }
   searchParams: {
-    category: string;
-    difficulty: string;
+    domain: string;
     limit: string;
   };
 };
@@ -22,9 +25,9 @@ async function getData(category: string, difficulty: string, limit: string) {
   return res.json();
 }
 
-const QuestionsPage = async ({ searchParams }: Props) => {
-  let category = searchParams.category as string;
-  let difficulty = searchParams.difficulty;
+const QuestionsPage = async ({ params, searchParams }: Props) => {
+  let category = params.slug;
+  let difficulty = searchParams.domain;
   let limit = searchParams.limit;
 
   const validateCategory = (category: string) => {
@@ -47,9 +50,10 @@ const QuestionsPage = async ({ searchParams }: Props) => {
     !validateDifficulty(difficulty) ||
     !validateLimit(limit)
   ) {
+    console.error('redirecting!');
     return redirect("/");
   }
-  category = "general_knowledge";
+  category = "general_software_engineering";
   difficulty = "easy"
   limit = "5";
 

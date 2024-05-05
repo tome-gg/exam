@@ -9,18 +9,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 import { categoryOptions, domainOptions } from "@/constants";
 
 const QuizSettings = () => {
   const router = useRouter();
   const [category, setCategory] = useState<string>("");
-  const [difficulty, setDifficulty] = useState<string>("");
-  const [limit, setLimit] = useState([10]);
+  const [domain, setDomain] = useState<string>("");
+  const [limit] = useState([10]);
 
   const handleQuizStart = () => {
     router.push(
-      `/questions?category=${category}&difficulty=${difficulty}&limit=${limit[0]}`
+      `/quiz/${category}?domain=${domain}&limit=${limit[0]}`
     );
   };
 
@@ -42,8 +41,8 @@ const QuizSettings = () => {
         </SelectContent>
       </Select>
       <Select
-        value={difficulty}
-        onValueChange={(value) => setDifficulty(value)}
+        value={domain}
+        onValueChange={(value) => setDomain(value)}
       >
         <SelectTrigger className="w-full md:max-w-xs xl:max-w-md">
           <SelectValue placeholder="Learn it from" />
@@ -63,7 +62,7 @@ const QuizSettings = () => {
         <Button>
           Log in
         </Button>
-        <Button disabled={!difficulty || !category} onClick={handleQuizStart}>
+        <Button disabled={!domain || !category} onClick={handleQuizStart}>
           Start Quiz
         </Button>
       </div>
