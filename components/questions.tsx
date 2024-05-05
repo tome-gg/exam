@@ -6,6 +6,9 @@ import useModalStore from "@/hooks/useModalStore";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import Image from "next/image";
+import { IoCloseSharp } from "react-icons/io5";
+
 
 type Props = {
   questions: {
@@ -85,23 +88,43 @@ const Questions = ({ questions, limit, category }: Props) => {
     setProgressValue((100 / limit) * (curr + 1));
   }, [curr, questions]);
 
+  setTimeout(() => {
+    handleShowResult();
+  }, 2000);
+
   return (
     <div className="wrapper">
       <div className="bg-white p-4 shadow-md w-full md:w-[80%] lg:w-[70%] max-w-5xl rounded-md">
-        <h1 className="heading">Quizy</h1>
+        <div className="w-full flex flex-row pb-4 align-center justify-center h-[80px]">
+          <Image
+            src={"/logo-small.png"}
+            alt="banner-image"
+            priority
+            width={64}
+            height={64}
+            className="object-cover object-center mr-4"
+          />
+          <div className="w-full bg-gray-300 p-4 rounded text-white">
+            Your advertisement here!
+          </div>
+          <div className="w-[25px] ml-4 mb-2 icon text-2xl cursor-pointer">
+          <IoCloseSharp onClick={handleQuit} />
+          </div>
+        </div>
         <Separator className="mb-3" />
         <Progress value={progressValue} />
-        <div className="flex justify-between py-5 px-2 font-bold text-md">
-          <p>Category: {showCategory(category)}</p>
-          <p>Score: {score}</p>
+        <div className="flex justify-between flex-col sm:flex-row text-sm sm:text-base py-5 px-2 font-bold text-md">
+          <p className="text-gray-400">{showCategory(category)}</p>
+          <p className="text-gray-400">Time left: Unknown</p>
+          <p >Score: {score}</p>
         </div>
-        <div className="flex flex-col min-h-[70vh] p-10 gap-4 w-full">
+        <div className="flex flex-col min-h-[60vh] p-4 gap-4 w-full">
           {questions.length > 0 && (
             <>
               <h2 className="text-2xl text-center font-medium">{`Q${
                 curr + 1
               }. ${questions[curr]?.question}`}</h2>
-
+              <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-4">
               {answers?.map((answer, i) => (
                 <button
                   key={i}
@@ -113,7 +136,8 @@ const Questions = ({ questions, limit, category }: Props) => {
                   {answer}
                 </button>
               ))}
-              <div className="flex mt-5 md:justify-between md:flex-row flex-col gap-4 md:gap-0 mx-auto max-w-xs w-full">
+              </div>
+              <div className="flex mt-5 md:justify-between md:flex-row flex-col gap-4 md:gap-0 mx-auto max-w-xs w-full md:w-fit">
                 <Button
                   disabled={!selected}
                   onClick={() =>
@@ -126,12 +150,14 @@ const Questions = ({ questions, limit, category }: Props) => {
                     ? "Next Question"
                     : "Show Results"}
                 </Button>
-                <Button variant={"destructive"} onClick={handleQuit}>
-                  Quit Quiz
-                </Button>
               </div>
             </>
           )}
+        </div>
+        <div className="flex flex-col py-5 px-2 font-bold text-md">
+          <p className="text-gray-400 text-xs">Quiz Author: Your YouTube channel</p>
+          <p className="text-gray-400 text-xs mb-4">Quiz Editor: John Smith</p>
+          <p className="text-gray-400 text-xs">By playing this quiz, you contribute to innovation in education and rewarding teachers, educators, coaches, and mentors!</p>
         </div>
       </div>
     </div>

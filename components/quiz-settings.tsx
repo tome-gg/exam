@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { categoryOptions, difficultyOptions } from "@/constants";
+import { categoryOptions, domainOptions } from "@/constants";
 
 const QuizSettings = () => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const QuizSettings = () => {
       </h2>
       <Select value={category} onValueChange={(value) => setCategory(value)}>
         <SelectTrigger className="w-full md:max-w-xs xl:max-w-md">
-          <SelectValue placeholder="Category" />
+          <SelectValue placeholder="Learn" />
         </SelectTrigger>
         <SelectContent>
           {categoryOptions.map((category) => (
@@ -46,10 +46,10 @@ const QuizSettings = () => {
         onValueChange={(value) => setDifficulty(value)}
       >
         <SelectTrigger className="w-full md:max-w-xs xl:max-w-md">
-          <SelectValue placeholder="Difficulty" />
+          <SelectValue placeholder="Learn it from" />
         </SelectTrigger>
         <SelectContent>
-          {difficultyOptions.map((difficulty) => (
+          {domainOptions.map((difficulty) => (
             <SelectItem value={difficulty.value} key={difficulty.value}>
               {difficulty.option}
             </SelectItem>
@@ -59,17 +59,14 @@ const QuizSettings = () => {
       <p className="text-xs lg:text-sm font-semibold">
         Total Questions: {limit[0]}
       </p>
-      <Slider
-        value={limit}
-        onValueChange={(value) => setLimit(value)}
-        max={50}
-        step={5}
-        min={5}
-        className="w-full md:max-w-xs xl:max-w-md"
-      />
-      <Button disabled={!difficulty || !category} onClick={handleQuizStart}>
-        Start Quiz
-      </Button>
+      <div className="grid grid-cols-auto grid-flow-col gap-4 align-center">
+        <Button>
+          Log in
+        </Button>
+        <Button disabled={!difficulty || !category} onClick={handleQuizStart}>
+          Start Quiz
+        </Button>
+      </div>
     </div>
   );
 };
