@@ -1,58 +1,63 @@
 export const categoryOptions = [
   {
-    value: "general_knowledge",
-    option: "General Knowledge",
+    value: "general_software_engineering",
+    option: "Learn: General topics of Software Engineering",
   },
   {
-    value: "arts_and_literature",
-    option: "Arts & Literature",
+    value: "basic_programming",
+    option: "Learn: Basic Programming",
   },
   {
-    value: "film_and_tv",
-    option: "Film & TV",
+    value: "design_patterns",
+    option: "Learn: Design Patterns",
   },
   {
-    value: "food_and_drink",
-    option: "Food & Drink",
+    value: "data_structures_and_algorithms",
+    option: "Learn: Data Structures and Algorithms",
   },
   {
-    value: "society_and_culture",
-    option: "Society & Culture",
+    value: "general_mathematics",
+    option: "Learn: General topics of Mathematics",
   },
   {
-    value: "geography",
-    option: "Geography",
+    value: "calculus",
+    option: "Learn: Calculus",
   },
   {
-    value: "history",
-    option: "History",
+    value: "statistics",
+    option: "Learn: Statistics",
   },
   {
-    value: "music",
-    option: "Music",
+    value: "combinatorics",
+    option: "Learn: Combinatorics- Probabilities, Permutations, and Combinations",
   },
   {
-    value: "sport_and_leisure",
-    option: "Sport & Leisure",
+    value: "general_business_administration",
+    option: "Learn: General topics of Business Administration",
+  },
+  
+  {
+    value: "basic_economics",
+    option: "Learn: Basic Economics",
   },
   {
-    value: "science",
-    option: "Science",
+    value: "basic_finance",
+    option: "Learn: Basic Finance",
+  },
+  {
+    value: "investment_and_risk",
+    option: "Learn: Investment and Risk",
   },
 ];
 
-export const difficultyOptions = [
+export const domainOptions = [
   {
-    value: "easy",
-    option: "Easy",
+    value: "haikyu",
+    option: "From Anime: Haikyu",
   },
   {
-    value: "medium",
-    option: "Medium",
-  },
-  {
-    value: "hard",
-    option: "Hard",
+    value: "dota_2",
+    option: "From Video Games: DotA 2",
   },
 ];
 
@@ -63,14 +68,7 @@ export const alphabeticNumeral = (index: number) => {
 };
 
 export const showCategory = (category: string) => {
-  if (category === "general_knowledge") return "General Knowledge";
-  else if (category === "science") return "Science";
-  else if (category === "sport_and_leisure") return "Sports & Leisure";
-  else if (category === "music") return "Music";
-  else if (category === "history") return "History";
-  else if (category === "geography") return "Geography";
-  else if (category === "society_and_culture") return "Society & Culture";
-  else if (category === "arts_and_literature") return "Arts & Literture";
-  else if (category === "film_and_tv") return "Film & TV";
-  else if (category === "food_and_drink") return "Food & Drink";
+  let categoryName = categoryOptions.find((o) => o.value === category)?.option;
+  if (categoryName) return categoryName;
+  return 'Category Unknown';
 };
