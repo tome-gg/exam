@@ -1,5 +1,5 @@
 import Questions from "@/components/questions";
-import { categoryOptions, difficultyOptions } from "@/constants";
+import { categoryOptions, domainOptions } from "@/constants";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -23,9 +23,9 @@ async function getData(category: string, difficulty: string, limit: string) {
 }
 
 const QuestionsPage = async ({ searchParams }: Props) => {
-  const category = searchParams.category as string;
-  const difficulty = searchParams.difficulty;
-  const limit = searchParams.limit;
+  let category = searchParams.category as string;
+  let difficulty = searchParams.difficulty;
+  let limit = searchParams.limit;
 
   const validateCategory = (category: string) => {
     const validCategories = categoryOptions.map((option) => option.value);
@@ -33,7 +33,7 @@ const QuestionsPage = async ({ searchParams }: Props) => {
   };
 
   const validateDifficulty = (difficulty: string) => {
-    const validDifficulties = difficultyOptions.map((option) => option.value);
+    const validDifficulties = domainOptions.map((option) => option.value);
     return validDifficulties.includes(difficulty);
   };
 
@@ -49,6 +49,9 @@ const QuestionsPage = async ({ searchParams }: Props) => {
   ) {
     return redirect("/");
   }
+  category = "general_knowledge";
+  difficulty = "easy"
+  limit = "5";
 
   const response = await getData(category, difficulty, limit);
 
