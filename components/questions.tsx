@@ -125,7 +125,7 @@ const Questions = ({ questions, limit, category }: Props) => {
               <p className="text-sm text-gray-400">47 learners answered this question correctly the first time.</p>
               <p className="text-sm text-gray-400">Learners usually take 40 seconds to answer this correctly.</p>
               
-              <h4>Your Cohort's performance</h4>
+              <h4>Your Cohort&apos;s performance</h4>
               <p className="text-sm text-gray-400">Every person in your cohort has answered this question correctly.</p>
               <p className="text-sm text-gray-400">Persons in your cohort usually take 37 seconds to answer this correctly.</p>
               <a className="text-xs text-white bg-gray-400 w-max rounded p-2 cursor-pointer flex flex-row"><FaShareFromSquare className="mr-1 text-base" /> Share</a>
